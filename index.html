@@ -22,9 +22,6 @@
 <meta property="og:description" content="곡별 가사와 떼창·박수·손 흔들기 포인트를 영상에 맞춰 확인하세요">
 <meta property="og:image" content="./icon-512.png">
 <meta name="twitter:card" content="summary">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Anton&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg-deep:#230805;
@@ -48,7 +45,7 @@
   body{
     background:var(--bg-deep);
     color:var(--cream);
-    font-family:'Noto Sans KR',sans-serif;
+    font-family:Pretendard,sans-serif;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
@@ -58,7 +55,7 @@
 
   /* ---------- utility ---------- */
   .eyebrow{
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     letter-spacing:.3em;
     font-size:clamp(13px,3.6vw,16px);
     color:var(--gold-soft);
@@ -77,38 +74,25 @@
        닫힌 상태에서 가운데처럼 보이게 하는 여백은 JS(layoutHeroCenter)가 한 번만 계산해 고정합니다. */
     justify-content:flex-start;
     padding:calc(44px + var(--safe-top, 0px)) 20px 36px;
-    background:
-      radial-gradient(120% 70% at 50% 8%, rgba(200,70,42,0.55), transparent 60%),
-      radial-gradient(140% 90% at 50% 100%, rgba(122,39,18,0.9), transparent 70%),
-      linear-gradient(180deg, #170504 0%, #2c0a06 30%, #7a2712 78%, #3a0d08 100%);
-    background-image:
-      radial-gradient(120% 70% at 50% 8%, rgba(200,70,42,0.55), transparent 60%),
-      radial-gradient(140% 90% at 50% 100%, rgba(122,39,18,0.9), transparent 70%),
-      url('images/poster.jpg'),
-      linear-gradient(180deg, #170504 0%, #2c0a06 30%, #7a2712 78%, #3a0d08 100%);
-    background-size:cover,cover,cover,cover;
-    background-position:center,center,center 42%,center;
-    background-repeat:no-repeat;
+    background:var(--bg-deep) url('images/poster.jpg') center 42%/cover no-repeat;
     text-align:center;
     isolation:isolate;
   }
   .hero::after{
     content:"";
     position:absolute;inset:0;
-    background:linear-gradient(180deg, rgba(23,5,4,0.42) 0%, rgba(23,5,4,0.38) 30%, rgba(23,5,4,0.66) 60%, rgba(15,4,3,0.97) 100%);
+    background:rgba(23,5,4,.74);
     z-index:0;
   }
   .hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:100%;max-width:560px;}
 
   .tour-title{
     margin:16px 0 0;
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(40px,10vw,58px);
     letter-spacing:.02em;
     color:var(--gold);
-    /* 카운트다운·일정과 같은 빨강·파랑 번짐을 옅게 넣어 톤을 맞춤 */
-    text-shadow:1.2px 0 0 rgba(255,64,80,0.3), -1.2px 0 0 rgba(79,168,224,0.3),
-                0 2px 8px rgba(0,0,0,0.9), 0 0 28px rgba(0,0,0,0.65);
+    text-shadow:none;
     line-height:1.06;
   }
   .tour-title span{
@@ -117,8 +101,7 @@
     letter-spacing:.36em;
     color:#fff;
     margin-bottom:8px;
-    text-shadow:1.2px 0 0 rgba(255,64,80,0.42), -1.2px 0 0 rgba(79,168,224,0.42),
-                0 2px 10px rgba(0,0,0,0.85);
+    text-shadow:none;
   }
 
   /* ── 카운트다운 (D-DAY 알약 + 공연 일정 목록) ───────────────── */
@@ -133,20 +116,18 @@
     align-items:center;
     gap:clamp(12px,3.4vw,18px);
     padding:clamp(11px,3vw,15px) clamp(20px,5.6vw,30px);
-    border:1px solid rgba(246,239,217,0.28);
-    border-radius:999px;
-    background:rgba(20,6,4,0.55);
-    backdrop-filter:blur(3px);
-    box-shadow:0 6px 20px rgba(0,0,0,0.45);
+    border:0;
+    border-radius:8px;
+    background:rgba(23,5,4,.8);
   }
   .cd-dday{
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(28px,8.2vw,38px);
     line-height:1;
     color:#fff;
     letter-spacing:.02em;
     font-variant-numeric:tabular-nums;
-    text-shadow:1px 0 0 rgba(255,64,80,0.42), -1px 0 0 rgba(79,168,224,0.42), 0 2px 10px rgba(0,0,0,0.8);
+    text-shadow:none;
   }
   .cd-sep{
     width:1px;
@@ -154,18 +135,18 @@
     background:rgba(246,239,217,0.3);
   }
   .cd-clock{
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(28px,8.2vw,38px);
     line-height:1;
     color:#e7e3d8;
     letter-spacing:.03em;
     font-variant-numeric:tabular-nums;
-    text-shadow:0 2px 10px rgba(0,0,0,0.8);
+    text-shadow:none;
   }
   /* 마지막 공연 진행 중 / 공연 종료 상태 */
   .cd-pill.is-live{
     border-color:rgba(245,148,44,0.55);
-    box-shadow:0 6px 20px rgba(0,0,0,0.45), 0 0 22px rgba(245,148,44,0.18);
+    background:rgba(23,5,4,.9);
   }
   .cd-pill.is-live .cd-dday{ color:var(--chant); }
   .cd-pill.is-live .cd-clock{ color:#fff; }
@@ -188,7 +169,7 @@
 
   .countdown-done{
     margin-top:30px;
-    font-family:'Black Han Sans',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:22px;
     color:var(--teal);
     letter-spacing:.06em;
@@ -210,7 +191,7 @@
     border-top:1px solid rgba(246,239,217,0.16);
   }
   .show-day{
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(18px,5vw,22px);
     letter-spacing:.03em;
     color:#fff;
@@ -218,7 +199,7 @@
   }
   .show-day .dow{ margin-left:6px; }
   .show-time{
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(16px,4.4vw,20px);
     letter-spacing:.04em;
     color:#b9b3a6;
@@ -229,7 +210,7 @@
     margin-top:0;
     padding-top:13px;
     border-top:1px solid rgba(246,239,217,0.16);
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(12px,3.2vw,13px);
     color:#8d8577;
     letter-spacing:.18em;
@@ -245,36 +226,31 @@
   .menu-btn{
     width:100%;
     display:flex;flex-direction:column;align-items:center;
-    background:linear-gradient(180deg, rgba(246,239,217,0.10), rgba(246,239,217,0.04));
-    border:1px solid rgba(233,217,163,0.34);
-    border-radius:16px;
+    background:var(--action);
+    border:0;
+    border-radius:8px;
     padding:20px 24px;
     cursor:pointer;
-    box-shadow:0 6px 20px rgba(0,0,0,0.4);
     transition:background .2s ease, border-color .2s ease, transform .2s ease;
   }
   .menu-btn:hover, .menu-btn:focus-visible{
-    background:linear-gradient(90deg, rgba(94,205,196,0.14), rgba(63,143,214,0.10));
-    border-color:var(--teal);
-    transform:translateY(-2px);
+    background:var(--cream);
+    transform:none;
     outline:none;
   }
   .menu-btn-label{
-    font-family:'Black Han Sans','Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(20px,5.6vw,24px);
     letter-spacing:.02em;
-    color:#fff;
-    text-shadow:0 2px 10px rgba(0,0,0,0.8);
+    color:var(--ink);
+    text-shadow:none;
   }
 
   /* ---------- SONG LIST / GUIDE ---------- */
   .guide-page{
     min-height:100svh;
     position:relative;
-    background:
-      linear-gradient(180deg, rgba(15,4,3,0.90) 0%, rgba(15,4,3,0.94) 100%),
-      url('images/poster-guide.jpg') center 30%/cover no-repeat,
-      linear-gradient(180deg,#170504 0%, #0f0403 100%);
+    background:var(--bg-deep);
   }
   .songs-section{
     background:none;
@@ -285,7 +261,7 @@
     text-align:center;
   }
   .songs-head h2{
-    font-family:'Black Han Sans',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(22px,6vw,28px);
     margin:10px 0 6px;
     letter-spacing:.02em;
@@ -304,19 +280,14 @@
     max-width:640px;margin:0 auto 12px;
     padding:10px 0 10px;
   }
-  /* 화면 맨 위에 붙었을 때만 뒤를 살짝 흐린다.
-     (붙기 전에는 아무 배경도 깔지 않아 포스터 위에 네모가 생기지 않음) */
+  /* 화면 맨 위에 붙었을 때만 뒤에 단색 바탕을 깐다. */
   .song-search::before{
     content:"";
     position:absolute;
     top:0;bottom:0;
     left:calc(50% - 50vw);
     right:calc(50% - 50vw);
-    background:linear-gradient(180deg, rgba(0,0,0,0.62), rgba(0,0,0,0));
-    backdrop-filter:blur(9px);
-    -webkit-backdrop-filter:blur(9px);
-    -webkit-mask-image:linear-gradient(180deg,#000 62%,transparent);
-    mask-image:linear-gradient(180deg,#000 62%,transparent);
+    background:rgba(33,12,9,0.96);
     opacity:0;
     transition:opacity .22s ease;
     pointer-events:none;
@@ -324,21 +295,16 @@
   .song-search.stuck::before{ opacity:1; }
   .song-search-sentinel{ height:1px; margin:0; }
   .song-search-box{
-    position:relative;                 /* 위 흐림 레이어보다 앞에 */
+    position:relative;
     display:flex;align-items:center;gap:9px;
     padding:11px 14px;
     border:1px solid rgba(246,239,217,0.20);
-    border-radius:999px;
-    /* 색을 얹지 않고 뒤 배경을 그대로 어둡게만 — 포스터 색이 무엇이든 겉돌지 않게 */
-    background:rgba(0,0,0,0.30);
-    backdrop-filter:blur(16px) saturate(1.05) brightness(0.92);
-    -webkit-backdrop-filter:blur(16px) saturate(1.05) brightness(0.92);
-    box-shadow:0 4px 14px rgba(0,0,0,0.28);
+    border-radius:8px;
+    background:var(--surface);
     transition:border-color .2s ease, background .2s ease;
   }
   .song-search-box:focus-within{
-    border-color:var(--teal);
-    background:rgba(0,0,0,0.44);
+    border-color:var(--gold);
   }
   .song-search-box svg{ width:15px;height:15px;color:var(--gold-soft);flex:none; }
   .song-search-box input{
@@ -365,7 +331,7 @@
     display:flex;align-items:center;justify-content:space-between;
     max-width:640px;margin:0 auto 6px;
     padding:0 2px;
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:11.5px;letter-spacing:.08em;
     color:#a5947a;
     text-shadow:0 1px 6px rgba(0,0,0,0.85);
@@ -398,13 +364,12 @@
     color:#b9a98a;
     font-family:inherit;font-size:12.5px;font-weight:700;
     cursor:pointer;white-space:nowrap;
-    transition:background .2s ease, color .2s ease, box-shadow .2s ease;
+    transition:background .2s ease, color .2s ease;
   }
   .song-sort:hover{ color:var(--cream); }
   .song-sort.active{
-    background:linear-gradient(180deg, rgba(94,205,196,0.22), rgba(94,205,196,0.10));
+    background:var(--surface-raised);
     color:var(--cream);
-    box-shadow:inset 0 0 0 1px rgba(94,205,196,0.38);
   }
   .song-sort .dir{ font-size:11px; color:var(--teal); }
   @media (max-width:400px){
@@ -424,16 +389,15 @@
     padding:20px 6px;
     cursor:pointer;
     text-align:left;
-    transition:background .2s ease, padding-left .2s ease;
+    transition:background .2s ease;
   }
   .song-row:hover, .song-row:focus-visible{
-    background:linear-gradient(90deg, rgba(94,205,196,0.10), transparent 70%);
-    padding-left:14px;
+    background:rgba(246,239,217,.07);
     outline:none;
   }
   .song-title{
     flex:1;
-    font-family:'Noto Sans KR',sans-serif;
+    font-family:Pretendard,sans-serif;
     font-weight:500;
     font-size:clamp(16px,4.4vw,18px);
     letter-spacing:0;
@@ -444,7 +408,7 @@
   .song-num{
     flex:none;
     width:26px;
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:14px;
     letter-spacing:.04em;
     color:var(--gold-soft);
@@ -467,7 +431,7 @@
   }
   .song-mark svg{ width:12px;height:12px; }
   .song-mark b{
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-weight:400;
     font-size:11px;
     letter-spacing:.02em;
@@ -536,11 +500,9 @@
   }
   .info-card{
     border:1px solid var(--line);
-    border-radius:16px;
+    border-radius:8px;
     overflow:hidden;
-    background:rgba(20,6,4,0.55);
-    backdrop-filter:blur(3px);
-    box-shadow:0 6px 20px rgba(0,0,0,0.45);
+    background:var(--surface);
   }
   /* ── 홈 아래 메뉴 — 한 장의 카드 안에 같은 모양의 줄로 정리 ──────
      응원가이드(주 버튼) → 공연 정보 · 가는 길 · 공식사이트 순서. */
@@ -549,11 +511,9 @@
     max-width:560px;
     margin:14px auto 0;
     border:1px solid var(--line);
-    border-radius:16px;
+    border-radius:8px;
     overflow:hidden;
-    background:rgba(20,6,4,0.55);
-    backdrop-filter:blur(3px);
-    box-shadow:0 6px 20px rgba(0,0,0,0.45);
+    background:var(--surface);
     text-align:left;
   }
   .menu-card > * + *{ border-top:1px solid var(--line); }
@@ -587,14 +547,11 @@
     font-size:12.5px;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   }
-  .chip-badge{
+  .chip-note{
     flex:none;
-    padding:1px 6px;
-    border-radius:999px;
-    border:1px solid rgba(217,112,90,0.5);
-    color:#d9705a;
-    font-size:10px;
-    letter-spacing:.02em;
+    color:var(--gold-soft);
+    font-size:11px;
+    white-space:nowrap;
   }
 
   /* 카드 안에서는 각 항목의 테두리를 없애 한 덩어리로 보이게 */
@@ -616,23 +573,23 @@
     transition:background .2s ease;
   }
   .menu-row:hover, .menu-row:focus-visible{
-    background:linear-gradient(90deg, rgba(94,205,196,0.10), transparent 75%);
+    background:rgba(246,239,217,.07);
     outline:none;
   }
   .info-toggle-icon{
     flex:none;
     width:23px;height:23px;
-    border-radius:50%;
+    border-radius:4px;
     display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg, rgba(94,205,196,0.18), rgba(63,143,214,0.14));
-    border:1px solid var(--line);
-    color:var(--teal);
+    background:none;
+    border:0;
+    color:var(--gold);
   }
   .info-toggle-icon svg{width:13px;height:13px;}
   .info-toggle-label{
     flex:1;
     min-width:0;
-    font-family:'Black Han Sans',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:13.5px;
     letter-spacing:.02em;
     color:#fff;
@@ -652,7 +609,7 @@
 
   /* 외부 링크 줄 (공식사이트) */
   .menu-row.ext .info-toggle-icon{
-    background:linear-gradient(135deg, rgba(212,175,110,0.18), rgba(94,205,196,0.10));
+    background:none;
     color:var(--gold-soft);
   }
   .menu-row.ext .info-toggle-label{ color:var(--gold); font-size:13.5px; }
@@ -670,7 +627,7 @@
     .menu-chip{ padding:9px 6px; gap:5px; }
     .chip-label{ font-size:11.5px; }
     .chip-ico svg{ width:13px;height:13px; }
-    .chip-badge{ padding:1px 5px; font-size:9.5px; }
+    .chip-note{ font-size:10px; }
   }
 
   .info-panel{
@@ -696,7 +653,7 @@
   .info-panel-title{
     margin:20px 0 4px;
     text-align:center;
-    font-family:'Black Han Sans',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(17px,4.6vw,20px);
     letter-spacing:.02em;
     color:var(--gold);
@@ -722,9 +679,9 @@
     font-size:clamp(9.5px,2.7vw,12.5px);
   }
   .info-table thead th{
-    background:linear-gradient(180deg, rgba(233,217,163,0.16), rgba(233,217,163,0.05));
+    background:var(--surface-raised);
     color:var(--gold);
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     letter-spacing:.02em;
     font-size:clamp(9px,2.5vw,11.5px);
     text-transform:uppercase;
@@ -858,10 +815,7 @@
     display:flex;
     flex-direction:column;
     overflow:hidden;
-    background:
-      linear-gradient(180deg, rgba(15,4,3,0.90) 0%, rgba(23,5,4,0.94) 100%),
-      var(--song-cover, url('images/poster-song.jpg')) center 30%/cover no-repeat,
-      linear-gradient(180deg,#170504 0%, #260906 100%);
+    background:var(--bg-deep);
   }
   .song-body{
     flex:1;
@@ -892,7 +846,7 @@
   }
   .back-btn:hover{border-color:var(--teal);color:var(--teal);}
   .song-topbar h1{
-    font-family:'Black Han Sans',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(16px,4.6vw,20px);
     margin:0;
     flex:1;
@@ -944,13 +898,13 @@
     transition:border-color .18s ease, background .18s ease;
   }
   .song-picker-btn:hover, .song-picker-btn:focus-visible{
-    border-color:var(--teal);
-    background:linear-gradient(90deg, rgba(94,205,196,0.12), rgba(63,143,214,0.08));
+    border-color:var(--gold-soft);
+    background:rgba(246,239,217,.07);
     outline:none;
   }
   .song-picker-title{
     min-width:0;
-    font-family:'Black Han Sans',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(13px,3.9vw,17px);
     line-height:1.3;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
@@ -975,7 +929,6 @@
   .song-sheet-backdrop{
     position:absolute;inset:0;
     background:rgba(8,2,2,0.68);
-    backdrop-filter:blur(2px);
   }
   .song-sheet-panel{
     position:relative;
@@ -983,11 +936,11 @@
     width:100%;max-width:560px;
     max-height:76svh;
     display:flex;flex-direction:column;
-    background:linear-gradient(180deg,#28100b 0%, #1a0705 100%);
+    background:var(--surface-raised);
     border:1px solid var(--line);
     border-bottom:none;
-    border-radius:20px 20px 0 0;
-    box-shadow:0 -12px 40px rgba(0,0,0,0.6);
+    border-radius:10px 10px 0 0;
+    box-shadow:0 -8px 24px rgba(0,0,0,0.3);
     padding-bottom:env(safe-area-inset-bottom, 0px);   /* 제스처 바에 안 가리게 */
     transform:translateY(14px);
     transition:transform .26s cubic-bezier(.4,0,.2,1);
@@ -1006,7 +959,7 @@
   }
   .song-sheet-title{
     flex:1;
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     letter-spacing:.18em;
     font-size:12px;
     color:var(--gold);
@@ -1058,7 +1011,7 @@
   }
   .song-sheet-num{
     flex:none;width:24px;
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:12px;
     color:#8d7d62;
     font-variant-numeric:tabular-nums;
@@ -1069,19 +1022,16 @@
     font-weight:500;line-height:1.45;
   }
   .song-sheet-item.current{
-    background:linear-gradient(90deg, rgba(94,205,196,0.16), rgba(63,143,214,0.06));
-    box-shadow:inset 3px 0 0 var(--teal);
+    background:rgba(246,239,217,.08);
+    box-shadow:inset 2px 0 0 var(--gold);
   }
-  .song-sheet-item.current .song-sheet-num{color:var(--teal);}
+  .song-sheet-item.current .song-sheet-num{color:var(--gold);}
   .song-sheet-item.current .song-sheet-name{font-weight:800;}
   .song-sheet-now{
     flex:none;
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:9px;letter-spacing:.14em;
-    color:var(--teal);
-    border:1px solid rgba(94,205,196,0.5);
-    border-radius:999px;
-    padding:3px 7px;
+    color:var(--gold-soft);
   }
 
   /* 아주 좁은 기기에서는 버튼·여백을 줄여 곡 제목이 최대한 길게 보이도록 */
@@ -1145,7 +1095,7 @@
   .legend-icon.jump{background:rgba(185,140,255,0.18);color:var(--jump);}
   .legend-icon.spin{background:rgba(255,134,200,0.16);color:var(--spin);}
   .legend-num{
-    font-family:'Anton',sans-serif;font-weight:400;
+    font-family:'Gmarket Sans',sans-serif;font-weight:400;
     color:var(--chant);
     margin:0 1px;
   }
@@ -1412,8 +1362,8 @@
   .seg-clap{color:var(--clap);}
 
   .lyric-line.active{
-    background:linear-gradient(90deg, rgba(94,205,196,0.14), rgba(63,143,214,0.08));
-    box-shadow:inset 3px 0 0 var(--teal);
+    background:rgba(246,239,217,.08);
+    box-shadow:inset 2px 0 0 var(--gold);
   }
 
   .player-controls{
@@ -1426,28 +1376,29 @@
 
   .autoscroll-toggle{
     display:flex;align-items:center;gap:7px;
-    background:linear-gradient(180deg, #2c130c, #1c0a06);
-    border:1px solid var(--chant);
-    border-radius:999px;
-    padding:5px 5px 5px 10px;
+    min-height:40px;
+    background:var(--surface-raised);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:6px 10px;
     cursor:pointer;
-    box-shadow:0 3px 9px rgba(0,0,0,0.45);
     transition:opacity .18s ease, transform .12s ease;
   }
   .autoscroll-toggle:active{transform:scale(0.97);}
-  .autoscroll-toggle:not(.active){opacity:.55;}
+  .autoscroll-toggle:not(.active){opacity:.72;}
+  .autoscroll-toggle.active{border-color:var(--gold-soft);}
   .autoscroll-label{
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     letter-spacing:.05em;
-    font-size:8px;
-    color:var(--chant);
+    font-size:11px;
+    color:var(--gold);
     white-space:nowrap;
   }
   .autoscroll-switch{
     width:22px;height:13px;flex:none;
     border-radius:999px;
     background:#160a06;
-    border:1px solid var(--chant);
+    border:1px solid var(--gold-soft);
     position:relative;
     transition:background .2s ease;
   }
@@ -1456,7 +1407,6 @@
     width:10px;height:10px;
     border-radius:50%;
     background:#8d8f93;
-    box-shadow:0 1px 2px rgba(0,0,0,0.5);
     transition:transform .2s ease, background .2s ease;
   }
   .autoscroll-toggle.active .autoscroll-switch{background:#241109;}
@@ -1476,10 +1426,9 @@
     align-items:center;gap:10px;
     padding:11px 14px;
     border:1px solid var(--line);
-    border-radius:14px;
-    background:rgba(20,6,4,0.94);
-    backdrop-filter:blur(6px);
-    box-shadow:0 8px 26px rgba(0,0,0,0.55);
+    border-radius:8px;
+    background:var(--surface-raised);
+    box-shadow:0 4px 16px rgba(0,0,0,0.3);
     font-size:12.5px;
     line-height:1.5;
     color:var(--cream);
@@ -1490,8 +1439,8 @@
   .app-banner button{
     flex:none;
     border:1px solid var(--line);
-    border-radius:999px;
-    background:rgba(0,0,0,0.3);
+    border-radius:6px;
+    background:var(--surface);
     color:var(--gold);
     font-family:inherit;font-size:12px;
     padding:7px 12px;
@@ -1501,37 +1450,28 @@
   .app-banner .close{
     padding:7px 10px;color:#8d7d62;
   }
-  .app-banner.offline .msg b{color:var(--chant);}
+  .app-banner.offline .msg b{color:var(--gold);}
 
 
   /* ── 오늘의 일정 카드 (공연 당일에만 나타남) ────────────────── */
   .today-card{
     width:100%;max-width:420px;
     margin:18px auto 0;
-    border:1px solid rgba(245,148,44,0.45);
-    border-radius:16px;
-    background:rgba(20,6,4,0.62);
-    backdrop-filter:blur(3px);
-    box-shadow:0 6px 20px rgba(0,0,0,0.45);
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--surface);
     padding:14px 15px 12px;
     text-align:left;
   }
   .today-head{
     display:flex;align-items:center;gap:8px;
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:12px;letter-spacing:.14em;
     color:var(--chant);
   }
   .today-head .dot{
     width:7px;height:7px;border-radius:50%;
     background:var(--chant);
-    box-shadow:0 0 0 0 rgba(245,148,44,.6);
-    animation:todayPulse 1.8s ease-out infinite;
-  }
-  @keyframes todayPulse{
-    0%  { box-shadow:0 0 0 0 rgba(245,148,44,.55); }
-    70% { box-shadow:0 0 0 7px rgba(245,148,44,0); }
-    100%{ box-shadow:0 0 0 0 rgba(245,148,44,0); }
   }
   .today-now{
     margin-top:8px;
@@ -1540,7 +1480,7 @@
   }
   .today-now b{ color:#fff; }
   .today-now .left{
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:17px;letter-spacing:.03em;
     color:var(--gold);
     font-variant-numeric:tabular-nums;
@@ -1556,7 +1496,7 @@
     color:#b9a98a;
   }
   .today-list li .t{
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:12px;letter-spacing:.03em;
     width:42px;flex:none;
     color:var(--gold-soft);
@@ -1600,12 +1540,12 @@
   .way-sec h4{
     margin:0 0 8px;
     display:flex;align-items:baseline;gap:8px;
-    font-family:'Black Han Sans',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:14px;letter-spacing:.02em;
     color:var(--gold);
   }
   .way-sec h4 span{
-    font-family:'Noto Sans KR',sans-serif;
+    font-family:Pretendard,sans-serif;
     font-size:11.5px;font-weight:400;
     color:#8d7d62;
   }
@@ -1642,7 +1582,7 @@
   .way-ul li b{ color:var(--cream); }
   .way-hint{
     display:block;margin-top:2px;
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:11.5px;letter-spacing:.02em;
     color:var(--teal);
   }
@@ -1739,13 +1679,13 @@
   }
   .nv-title{
     flex:1;min-width:0;
-    font-family:'Black Han Sans',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:14px;color:var(--cream);
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   }
   .nv-count{
     flex:none;
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:11px;letter-spacing:.08em;color:#8d7d62;
   }
   .nv-scroll{
@@ -1797,7 +1737,7 @@
   }
   .seat-map{ display:block;width:100%;height:auto; }
   .seat-map text{
-    font-family:'Noto Sans KR',sans-serif;
+    font-family:Pretendard,sans-serif;
     font-weight:700;
     fill:#20100a;
     text-anchor:middle;
@@ -1870,36 +1810,27 @@
     font-family:inherit;
   }
 
-  /* ── 홈 맨 아래 — 오프라인 준비 상태 · 공유 ─────────────────── */
+  /* ── 홈 맨 아래 — 공유 ─────────────────────────────────────── */
   .home-foot{
-    display:flex;align-items:center;justify-content:center;
-    flex-wrap:wrap;gap:9px;
+    display:flex;align-items:center;justify-content:flex-end;
+    flex-wrap:wrap;gap:12px;
     margin:18px auto 0;
     width:100%;max-width:560px;
+    padding-top:12px;
+    border-top:1px solid var(--line);
   }
-  .offline-badge{
-    display:none;align-items:center;gap:7px;
-    padding:8px 13px;
-    border:1px solid var(--line);
-    border-radius:999px;
-    background:rgba(0,0,0,0.25);
-    font-size:12px;color:#b9a98a;
-  }
-  .offline-badge.show{ display:inline-flex; }
-  .offline-badge.ready{ border-color:rgba(141,224,95,0.5);color:var(--wave); }
-  .offline-badge .mark{ font-weight:700; }
   .share-btn{
     display:inline-flex;align-items:center;gap:7px;
-    padding:8px 15px;
-    border:1px solid var(--line);
-    border-radius:999px;
-    background:rgba(0,0,0,0.25);
+    min-height:44px;
+    padding:8px 4px;
+    border:0;
+    background:none;
     color:var(--gold);
     font-family:inherit;font-size:12.5px;
     cursor:pointer;
-    transition:border-color .2s ease,color .2s ease;
+    transition:color .2s ease;
   }
-  .share-btn:hover{ border-color:var(--teal);color:var(--teal); }
+  .share-btn:hover{ color:var(--cream); }
   .share-btn svg{ width:14px;height:14px; }
 
 
@@ -1914,10 +1845,9 @@
     width:48px;height:48px;
     border-radius:50%;
     border:1px solid var(--gold-soft);
-    background:linear-gradient(180deg, #2c130c, #1c0a06);
+    background:var(--surface-raised);
     color:var(--gold);
     cursor:pointer;
-    box-shadow:0 3px 12px rgba(0,0,0,0.5);
     transition:transform .12s ease, border-color .18s ease, color .18s ease;
   }
   .play-toggle:active{ transform:scale(0.94); }
@@ -1929,24 +1859,24 @@
 
   .venue-toggle{
     display:flex;align-items:center;gap:7px;
-    background:linear-gradient(180deg, #2c130c, #1c0a06);
-    border:1px solid var(--gold-soft);
-    border-radius:999px;
-    padding:5px 5px 5px 10px;
+    min-height:40px;
+    background:var(--surface-raised);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:6px 10px;
     cursor:pointer;
-    box-shadow:0 3px 9px rgba(0,0,0,0.45);
     transition:opacity .18s ease, transform .12s ease, border-color .18s ease;
   }
   .venue-toggle:active{ transform:scale(0.97); }
-  .venue-toggle:not(.active){ opacity:.55; }
-  .venue-toggle.active{ border-color:var(--wave); }
+  .venue-toggle:not(.active){ opacity:.72; }
+  .venue-toggle.active{ border-color:var(--gold-soft); }
   .venue-label{
-    font-family:'Anton',sans-serif;
-    font-size:10px;letter-spacing:.14em;
+    font-family:'Gmarket Sans',sans-serif;
+    font-size:11px;letter-spacing:.04em;
     color:var(--gold-soft);
     white-space:nowrap;
   }
-  .venue-toggle.active .venue-label{ color:var(--wave); }
+  .venue-toggle.active .venue-label{ color:var(--gold); }
   .venue-switch{
     width:26px;height:15px;border-radius:999px;
     background:#3a2a1c;
@@ -1958,8 +1888,8 @@
     background:#8d8f93;
     transition:transform .2s ease, background .2s ease;
   }
-  .venue-toggle.active .venue-switch{ background:#12240a; }
-  .venue-toggle.active .venue-knob{ transform:translateX(11px); background:var(--wave); }
+  .venue-toggle.active .venue-switch{ background:#51432d; }
+  .venue-toggle.active .venue-knob{ transform:translateX(11px); background:var(--gold); }
 
   /* 켜진 상태 — 영상 영역은 화면에서 사라지고 가사만 남는다 */
   .song-page.venue .song-body{ flex-direction:column; }
@@ -2088,29 +2018,18 @@
   /* ---------- 도쿄 셋리스트 (스포일러 페이지) ----------
      첫 화면에는 경고만 보이고, 스크롤을 내려야 곡 목록이 드러난다. */
   .menu-row.spoiler .info-toggle-icon{
-    background:linear-gradient(135deg, rgba(255,120,96,0.22), rgba(212,175,110,0.12));
-    border-color:rgba(255,140,116,0.32);
-    color:#ff9d86;
+    background:none;
+    border:0;
+    color:var(--gold);
   }
   .menu-row.spoiler .info-toggle-label{ color:#fff; font-size:13.5px; }
-  .spoiler-badge{
-    flex:none;
-    font-family:'Anton',sans-serif;
-    font-size:10px;letter-spacing:.10em;
-    color:#ffb1a0;
-    border:1px solid rgba(255,140,116,0.42);
-    background:rgba(255,110,90,0.14);
-    border-radius:999px;
-    padding:3px 8px 2px;
-    white-space:nowrap;
-  }
   .menu-row.spoiler .go{ flex:none;font-size:13px;color:var(--gold-soft);margin-left:2px; }
   .menu-row.spoiler:hover .go{ color:var(--teal); }
 
   .setlist-page{
     position:relative;
     min-height:100svh;
-    background:linear-gradient(180deg,#170504 0%, #0f0403 100%);
+    background:var(--bg-deep);
   }
   /* 첫 화면(경고 화면) 뒤에 깔리는 사진 — 아래로 갈수록 어둠에 녹아든다.
      사진을 바꾸려면 아래 url() 파일명만 갈아 끼우면 된다. */
@@ -2137,7 +2056,7 @@
     top:0;
     z-index:20;
     background:rgba(24,7,5,0.97);
-    backdrop-filter:blur(12px);
+    backdrop-filter:none;
   }
   /* 고정된 상단 바에 목록 첫 줄이 가리지 않도록 */
   .setlist-body{ scroll-margin-top:calc(68px + var(--safe-top, 0px)); }
@@ -2156,11 +2075,11 @@
         url('images/setlist-bg.jpg') center top/152% auto no-repeat;
     }
   }
-  /* 사진 위에 얹히는 상단바 — 색을 덮지 않고 뒤를 살짝 흐리기만 한다 */
+  /* 사진 위에 얹히는 상단바 */
   .setlist-page .song-topbar{
-    background:rgba(14,5,5,0.34);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
+    background:var(--surface);
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
     border-bottom-color:rgba(233,217,163,0.14);
   }
   /* 첫 화면을 꽉 채우는 경고 — 여기까지만 보이고 목록은 아래에 있다 */
@@ -2172,22 +2091,16 @@
     text-align:center;
   }
   .spoiler-mark{
-    width:66px;height:66px;border-radius:50%;
+    width:66px;height:66px;border-radius:8px;
     display:flex;align-items:center;justify-content:center;
     border:1px solid rgba(255,140,116,0.34);
-    background:linear-gradient(135deg, rgba(255,120,96,0.18), rgba(212,175,110,0.10));
-    color:#ff9d86;
-    box-shadow:0 6px 22px rgba(0,0,0,0.45);
+    background:var(--surface-raised);
+    color:var(--gold);
   }
   .spoiler-mark svg{width:30px;height:30px;}
-  .spoiler-eyebrow{
-    font-family:'Anton',sans-serif;
-    font-size:11.5px;letter-spacing:.18em;
-    color:#ff9d86;
-  }
   .spoiler-title{
     margin:2px 0 0;
-    font-family:'Black Han Sans',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(23px,6.6vw,31px);
     letter-spacing:.02em;
     color:#fff;
@@ -2204,19 +2117,18 @@
     margin-top:10px;
     display:inline-flex;align-items:center;gap:8px;
     padding:13px 24px;
-    border-radius:999px;
-    border:1px solid rgba(233,217,163,0.34);
-    background:linear-gradient(180deg, rgba(246,239,217,0.10), rgba(246,239,217,0.04));
-    color:#fff;
-    font-family:'Black Han Sans',sans-serif;
+    border-radius:8px;
+    border:0;
+    background:var(--action);
+    color:var(--ink);
+    font-family:'Gmarket Sans',sans-serif;
     font-size:15px;letter-spacing:.02em;
     cursor:pointer;
     transition:background .2s ease, border-color .2s ease, transform .2s ease;
   }
   .spoiler-open:hover, .spoiler-open:focus-visible{
-    background:linear-gradient(90deg, rgba(94,205,196,0.16), rgba(63,143,214,0.10));
-    border-color:var(--teal);
-    transform:translateY(-2px);
+    background:var(--cream);
+    transform:none;
     outline:none;
   }
   .spoiler-cue{
@@ -2249,44 +2161,37 @@
   /* 누르는 즉시 순서가 드러나는 쪽에는 경고를 붙여 둔다 */
   .spoiler-choice .spoiler-open .tag{
     flex:none;
-    padding:1px 6px;
-    border-radius:999px;
-    border:1px solid rgba(217,112,90,0.55);
+    margin-left:5px;
     color:#d9705a;
-    font-family:'Noto Sans KR',sans-serif;
+    font-family:Pretendard,sans-serif;
     font-weight:700;
-    font-size:9.5px;letter-spacing:.02em;
+    font-size:10px;letter-spacing:.02em;
   }
   .spoiler-choice .spoiler-open span{
-    font-family:'Noto Sans KR',sans-serif;
+    font-family:Pretendard,sans-serif;
     font-weight:500;
     font-size:11.5px;letter-spacing:0;
     color:#b9a98a;
   }
   /* 순서를 감추는 쪽을 먼저, 조금 더 눈에 띄게 */
   .spoiler-choice .spoiler-open.soft{
-    border-color:rgba(94,205,196,0.45);
-    background:linear-gradient(180deg, rgba(94,205,196,0.17), rgba(94,205,196,0.06));
+    border:1px solid var(--gold-soft);
+    background:var(--surface-raised);
   }
-  .spoiler-choice .spoiler-open.soft span{ color:#a8ded8; }
+  .spoiler-choice .spoiler-open.soft span{ color:var(--gold-soft); }
 
-  /* 목록 자체 — 보기 방식을 고르기 전에는 흐릿하게 가려 둔다 */
+  /* 보기 방식을 고르기 전에는 목록을 표시하지 않는다. */
   .setlist-body{
     padding:4px 20px 30px;
-    filter:blur(22px);
-    opacity:.16;
-    pointer-events:none;
-    transition:filter .6s ease, opacity .6s ease;
   }
-  .setlist-body.revealed{ filter:none;opacity:1;pointer-events:auto; }
+  .setlist-body[hidden]{ display:none; }
   @media (prefers-reduced-motion: reduce){
-    .setlist-body{ transition:none; }
     .spoiler-cue .arrow{ animation:none; }
   }
 
   .setlist-head{ max-width:640px;margin:0 auto 18px;text-align:center; }
   .setlist-head h2{
-    font-family:'Black Han Sans',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:clamp(20px,5.4vw,26px);
     margin:0 0 6px;letter-spacing:.02em;
   }
@@ -2294,7 +2199,7 @@
   .setlist-meta{
     display:flex;align-items:center;justify-content:space-between;
     max-width:640px;margin:0 auto 6px;padding:0 2px;
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:11.5px;letter-spacing:.08em;color:#a5947a;
   }
   /* ── 셋리스트 보기 방식 (공연 순서 / 랜덤 순서) ────────────────
@@ -2316,24 +2221,21 @@
     color:#b9a98a;
     font-family:inherit;font-size:12.5px;font-weight:700;
     cursor:pointer;
-    transition:background .2s ease, color .2s ease, box-shadow .2s ease;
+    transition:background .2s ease, color .2s ease;
   }
   /* '공연 순서'는 누르는 즉시 순서가 드러나므로 미리 알려 준다 */
   .set-mode-badge{
     flex:none;
-    padding:1px 5px;
-    border-radius:999px;
-    border:1px solid rgba(217,112,90,0.5);
+    margin-left:3px;
     color:#d9705a;
-    font-size:9.5px;
+    font-size:10px;
     letter-spacing:.02em;
   }
-  .set-mode.active .set-mode-badge{ border-color:rgba(217,112,90,0.75);color:#e8846c; }
+  .set-mode.active .set-mode-badge{ color:#e8846c; }
   .set-mode:hover{ color:var(--cream); }
   .set-mode.active{
-    background:linear-gradient(180deg, rgba(94,205,196,0.22), rgba(94,205,196,0.10));
+    background:var(--surface-raised);
     color:var(--cream);
-    box-shadow:inset 0 0 0 1px rgba(94,205,196,0.38);
   }
   .set-shuffle{
     display:flex;align-items:center;justify-content:space-between;gap:10px;
@@ -2374,24 +2276,23 @@
     color:var(--cream);
     padding:16px 6px;
     cursor:pointer;text-align:left;
-    transition:background .2s ease, padding-left .2s ease;
+    transition:background .2s ease;
   }
   .set-row:hover, .set-row:focus-visible{
-    background:linear-gradient(90deg, rgba(94,205,196,0.10), transparent 70%);
-    padding-left:14px;
+    background:rgba(246,239,217,.07);
     outline:none;
   }
   .set-row[disabled]{ cursor:default; }
   .set-row[disabled]:hover{ background:none;padding-left:6px; }
   .set-num{
     flex:none;width:26px;
-    font-family:'Anton',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:14px;letter-spacing:.04em;
     color:var(--gold-soft);text-align:right;
   }
   .set-title{
     flex:1;min-width:0;
-    font-family:'Noto Sans KR',sans-serif;
+    font-family:Pretendard,sans-serif;
     font-weight:500;
     font-size:clamp(15px,4.2vw,17px);
     line-height:1.45;
@@ -2417,7 +2318,7 @@
     width:26px;height:22px;
     display:flex;align-items:center;justify-content:center;
     border-radius:7px;
-    font-family:'Black Han Sans',sans-serif;
+    font-family:'Gmarket Sans',sans-serif;
     font-size:11px;
     border:1px solid rgba(233,217,163,0.30);
     background:rgba(233,217,163,0.10);
@@ -2510,13 +2411,11 @@
   .tip-pic-card{
     margin:0;
     pointer-events:auto;
-    background:rgba(28,7,5,0.92);
-    border:1px solid rgba(141,224,95,0.35);
-    border-radius:16px;
+    background:var(--surface-raised);
+    border:1px solid var(--line);
+    border-radius:8px;
     padding:8px 8px 6px;
-    box-shadow:0 14px 34px rgba(0,0,0,0.5);
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
+    box-shadow:0 10px 24px rgba(0,0,0,.25);
     max-width:min(100%, 420px);
     display:flex;
     flex-direction:column;
@@ -2579,6 +2478,8 @@
 </style>
 <!-- YouTube IFrame Player API 스크립트 추가 -->
 <script src="https://www.youtube.com/iframe_api"></script>
+
+<link rel="stylesheet" href="./design.css">
 </head>
 
 <body>
@@ -2614,13 +2515,13 @@
   </symbol>
 </defs></svg>
 
-<div id="app"></div>
+<main id="app"></main>
 <!-- 곡 화면 — 유튜브 iframe 을 다시 만들지 않으려고 화면 밖에 계속 살려 둔다 -->
-<div id="song-view" class="song-view offstage"></div>
+<main id="song-view" class="song-view offstage" inert></main>
 
 <!-- 새 버전 안내 / 오프라인 안내 / 홈 화면 추가 안내가 여기에 뜹니다 -->
 <!-- 공지 이미지 크게 보기 -->
-<div class="notice-view" id="notice-view" aria-hidden="true">
+<div class="notice-view" id="notice-view" role="dialog" aria-modal="true" aria-label="공지 이미지 크게 보기" aria-hidden="true" inert>
   <div class="nv-head">
     <span class="nv-title" id="nv-title"></span>
     <span class="nv-count" id="nv-count"></span>
@@ -4477,13 +4378,14 @@
       renderSong(song);
     } else if (hash === "guide") {
       leaveSongView();
+      setSongFrom("guide");
       renderGuide();
     } else if (hash === "setlist") {
       leaveSongView();
       renderSetlist();
     } else {
       leaveSongView();
-      resetSetlistSpoiler();   // 홈에 나온 순간 셋리스트는 처음 상태로
+      setSongFrom("guide");
       renderHome();
     }
     window.scrollTo(0,0);
@@ -4631,6 +4533,7 @@
   let vawsReady   = [];   // VAWS 카드 안에 들어가는 사진들
   let viewList    = [];   // 크게 보기가 지금 넘기고 있는 목록
   let viewIdx     = 0;
+  let noticeTrigger = null;
 
   /* 사진 목록을 받아 눌러서 크게 볼 수 있는 격자를 만든다.
      · 파일이 없는 칸은 조용히 사라진다 (깨지지 않음)
@@ -4703,9 +4606,12 @@
     if (!view) return;
     viewList = list;
     viewIdx  = Math.max(0, Math.min(list.length - 1, i));
+    noticeTrigger = document.activeElement;
     paintNotice();
+    view.inert = false;
     view.classList.add("open");
     view.setAttribute("aria-hidden", "false");
+    app.inert = true;
     document.body.classList.add("no-scroll");
     const close = document.getElementById("nv-close");
     if (close) close.focus();
@@ -4716,7 +4622,11 @@
     if (!view) return;
     view.classList.remove("open", "zoom");
     view.setAttribute("aria-hidden", "true");
+    view.inert = true;
+    app.inert = false;
     document.body.classList.remove("no-scroll");
+    if (noticeTrigger && noticeTrigger.isConnected) noticeTrigger.focus();
+    noticeTrigger = null;
   }
 
   function paintNotice(){
@@ -4783,6 +4693,13 @@
       if (e.key === "Escape"){ e.preventDefault(); closeNotice(); }
       else if (e.key === "ArrowLeft")  { e.preventDefault(); noticeStep(-1); }
       else if (e.key === "ArrowRight") { e.preventDefault(); noticeStep(1); }
+      else if (e.key === "Tab"){
+        const focusable = [...view.querySelectorAll("button")].filter(el => !el.disabled && el.offsetParent !== null);
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      }
     });
 
     // 좌우로 밀어서 넘기기
@@ -4892,7 +4809,7 @@
             <span class="info-toggle-label">공연 정보</span>
             <span class="info-toggle-chevron">${CHEVRON_SVG}</span>
           </button>
-          <div class="info-panel" id="info-panel">
+          <div class="info-panel" id="info-panel" inert aria-hidden="true">
             <div class="info-panel-inner">
               <div class="info-panel-title"><span class="bar">|</span> 공연 개요 <span class="bar">|</span></div>
               <dl class="info-facts">
@@ -5023,7 +4940,7 @@
             <span class="info-toggle-label">공지 · 안내</span>
             <span class="info-toggle-chevron">${CHEVRON_SVG}</span>
           </button>
-          <div class="info-panel">
+          <div class="info-panel" inert aria-hidden="true">
             <div class="info-panel-inner">
               <p class="way-note">공연장 맵 · MD · 본인확인 등 <b>공식 공지</b>입니다. <b>탭하면 크게</b> 볼 수 있어요.</p>
               <div class="notice-grid" id="notice-grid"></div>
@@ -5041,7 +4958,7 @@
             <span class="info-toggle-label">좌석 배치도</span>
             <span class="info-toggle-chevron">${CHEVRON_SVG}</span>
           </button>
-          <div class="info-panel">
+          <div class="info-panel" inert aria-hidden="true">
             <div class="info-panel-inner">
               <div class="info-panel-title"><span class="bar">|</span> 인스파이어 아레나 <span class="bar">|</span></div>
 
@@ -5069,7 +4986,7 @@
             <span class="info-toggle-label">가는 길</span>
             <span class="info-toggle-chevron">${CHEVRON_SVG}</span>
           </button>
-          <div class="info-panel">
+          <div class="info-panel" inert aria-hidden="true">
             <div class="info-panel-inner">
               <div class="way-addr">
                 <b>인스파이어 아레나</b>
@@ -5133,7 +5050,7 @@
             <span class="info-toggle-label">응원 매너 · 처음이라면</span>
             <span class="info-toggle-chevron">${CHEVRON_SVG}</span>
           </button>
-          <div class="info-panel">
+          <div class="info-panel" inert aria-hidden="true">
             <div class="info-panel-inner">
 
               <p class="way-note">콜을 몰라도 괜찮습니다. <b>응원은 의무가 아니에요.</b> 이 가이드는 &ldquo;알면 더 재미있는 것&rdquo;을 모아 둔 것이지, 외워 가야 하는 숙제가 아닙니다. 가만히 서서 들어도 훌륭한 관람이에요.</p>
@@ -5184,7 +5101,7 @@
             <span class="info-toggle-label">VAWS 회원 티켓 카드</span>
             <span class="info-toggle-chevron">${CHEVRON_SVG}</span>
           </button>
-          <div class="info-panel">
+          <div class="info-panel" inert aria-hidden="true">
             <div class="info-panel-inner">
               <div class="info-panel-title"><span class="bar">|</span> 공연장 한정 특전 <span class="bar">|</span></div>
 
@@ -5278,13 +5195,12 @@
           <button class="menu-chip spoiler" type="button" id="setlist-btn">
             <span class="chip-ico warn">${WARN_SVG}</span>
             <span class="chip-label">도쿄 셋리스트</span>
-            <span class="chip-badge">스포</span>
+            <span class="chip-note">스포 포함</span>
           </button>
         </div>
         </div>
 
         <div class="home-foot">
-          <span class="offline-badge" id="offline-badge"><span class="mark">✓</span><span id="offline-text">오프라인 가사 저장 중…</span></span>
           <button class="share-btn" type="button" id="share-btn">${SHARE_SVG} 공유하기</button>
         </div>
           </section>
@@ -5351,6 +5267,8 @@
     btn.addEventListener("click", ()=>{
       const isOpen = card.classList.contains("open");
       if (isOpen){
+        panel.inert = true;
+        panel.setAttribute("aria-hidden", "true");
         // 닫기: 현재 높이에서 0으로 애니메이션
         panel.style.maxHeight = panel.scrollHeight + "px";
         requestAnimationFrame(()=>{
@@ -5359,6 +5277,8 @@
           panel.style.maxHeight = "0px";
         });
       } else {
+        panel.inert = false;
+        panel.setAttribute("aria-hidden", "false");
         card.classList.add("open");
         btn.setAttribute("aria-expanded", "true");
         panel.style.maxHeight = panel.scrollHeight + "px";
@@ -5378,12 +5298,11 @@
       <div class="guide-page">
         <div class="song-topbar">
           <button class="back-btn" id="back-btn">← 홈으로</button>
-          <h1>응원가이드</h1>
         </div>
 
         <section class="songs-section">
           <div class="songs-head">
-            <h2>응원가이드</h2>
+            <h1>응원가이드</h1>
             <p>곡을 선택하면 영상에 맞춰 가사 · 떼창 포인트를 확인할 수 있어요</p>
             <div class="song-legend">
               <span class="legend-item"><span class="legend-icon chant">${INLINE_ICONS.mic}</span>떼창 <b class="legend-num">12</b>줄</span>
@@ -5392,10 +5311,11 @@
               <span class="legend-item"><span class="legend-icon jump">${INLINE_ICONS.jump}</span>점프</span>
               <span class="legend-item"><span class="legend-icon spin">${INLINE_ICONS.spin}</span>팔 돌리기</span>
             </div>
-            <p class="song-legend-note">숫자는 떼창이 나오는 가사 줄 수예요. 아래에서 정렬을 바꾸면 <b>곡 화면의 이전 · 다음 곡</b>도 그 순서를 따라갑니다.<br>박수 · 손 흔들기는 거의 모든 곡에 있어 폰 화면에서는 생략했어요.</p>
+            <p class="song-legend-note">숫자는 떼창 가사 줄 수입니다. 정렬 순서는 곡 화면의 이전·다음에도 적용됩니다.<br>박수와 손 흔들기는 곡 화면에서 확인할 수 있어요.</p>
           </div>
           <div class="song-search-sentinel" id="song-search-sentinel"></div>
           <div class="song-search">
+            <label class="search-label" for="song-search-input">곡 검색</label>
             <div class="song-search-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
               <input id="song-search-input" type="search" inputmode="search" autocomplete="off"
@@ -5403,10 +5323,10 @@
               <button type="button" class="song-search-clear" id="song-search-clear" aria-label="지우기">✕</button>
             </div>
           </div>
-          <div class="song-sorts" role="tablist" aria-label="곡 목록 정렬">
-            <button class="song-sort" type="button" role="tab" data-sort="default">기본</button>
-            <button class="song-sort" type="button" role="tab" data-sort="title" id="sort-title">가나다</button>
-            <button class="song-sort" type="button" role="tab" data-sort="chant" id="sort-chant">떼창</button>
+          <div class="song-sorts" role="group" aria-label="곡 목록 정렬">
+            <button class="song-sort" type="button" data-sort="default">기본</button>
+            <button class="song-sort" type="button" data-sort="title" id="sort-title">가나다</button>
+            <button class="song-sort" type="button" data-sort="chant" id="sort-chant">떼창</button>
           </div>
           <div class="song-search-meta"><span id="song-count">전체 ${SONGS.length}곡</span></div>
           <p class="song-empty" id="song-empty" hidden><b>찾는 곡이 없어요</b>제목 일부나 곡 번호를 입력해 보세요</p>
@@ -5437,17 +5357,14 @@
   }
 
   /* ---------------- SETLIST (스포일러) ----------------
-     첫 화면에는 경고만 보이고, 스크롤을 내려야 목록이 드러난다.
-     곡을 보지 않고 내한을 즐기려는 사람이 실수로 보는 일이 없게 하기 위한 장치. */
+     보기 방식을 직접 고르기 전까지 목록 데이터를 화면에 넣지 않는다. */
   let setlistScrollHandler = null;
 
   /* ── 곡 화면에서 '뒤로'를 눌렀을 때 돌아갈 곳 ──────────────────
-     곡 목록에서 들어왔으면 곡 목록으로, 셋리스트에서 들어왔으면 셋리스트로.
-     새로고침해도 유지되도록 저장해 둔다. */
-  let songFrom = store("horo-song-from") === "setlist" ? "setlist" : "guide";
+     새로고침 뒤에는 셋리스트 맥락을 복원하지 않아 순서가 노출되지 않는다. */
+  let songFrom = "guide";
   function setSongFrom(v){
     songFrom = (v === "setlist") ? "setlist" : "guide";
-    store("horo-song-from", songFrom);
   }
   function songBackHash(){ return songFrom === "setlist" ? "#/setlist" : "#/guide"; }
 
@@ -5473,19 +5390,8 @@
 
      섞은 순서는 저장해 둔다. 곡을 보고 뒤로 돌아와도 같은 화면이 다시 나오므로
      실제 순서가 드러나지 않는다. */
-  let setlistMode     = store("horo-set-mode") === "random" ? "random" : "order";
+  let setlistMode     = "random";
   let setlistShuffle  = null;   // 섞은 순서 (곡 키 배열)
-  let setlistRevealed = false;  // 가림막을 이미 걷었는지 (이번 방문 동안)
-  let setlistScrollY  = 0;      // 곡을 보러 가기 전 스크롤 위치
-
-  /* 홈으로 나가면 셋리스트를 처음 상태로 되돌린다.
-     · 곡을 보러 갔다 '뒤로' 오는 건 보던 화면 그대로 (중간에 끊기면 불편하므로)
-     · 홈까지 나갔다가 다시 들어오면 → 스포주의 가림막부터 다시
-     옆 사람에게 폰을 건네줬을 때 실수로 순서가 보이는 일을 막아 준다. */
-  function resetSetlistSpoiler(){
-    setlistRevealed = false;
-    setlistScrollY  = 0;
-  }
   /* 셋리스트에서 곡을 눌러 들어갔을 때, 그 곡이 셋리스트의 몇 번째였는지.
      이전/다음 곡이 셋리스트 순서를 그대로 따라가게 하려고 기억해 둔다. */
   let setlistPos = (()=>{
@@ -5633,7 +5539,7 @@
     app.querySelectorAll(".set-mode").forEach(b=>{
       const on = b.dataset.mode === setlistMode;
       b.classList.toggle("active", on);
-      b.setAttribute("aria-selected", on ? "true" : "false");
+      b.setAttribute("aria-pressed", on ? "true" : "false");
     });
 
     // 눌린 줄이 셋리스트의 몇 번째인지 같이 기억해 둔다 (이전/다음 곡용)
@@ -5644,7 +5550,6 @@
       btn.addEventListener("click", ()=>{
         const target = SONGS.find(s => s.id === btn.dataset.id);
         if (!target) return;
-        setlistScrollY = window.scrollY;   // 돌아왔을 때 보던 자리로
         setSongFrom("setlist");
         setSetlistPos(myPos);
         gotoSong(target);
@@ -5662,34 +5567,39 @@
 
         <section class="spoiler-hero">
           <div class="spoiler-mark">${WARN_SVG}</div>
-          <div class="spoiler-eyebrow">SPOILER</div>
           <h2 class="spoiler-title">스포주의</h2>
           <p class="spoiler-desc">
-            아래에는 <b>${SETLIST_TOKYO.label} 셋리스트</b>가 있어요.<br>
-            곡을 모르는 채로 내한 공연을 즐기고 싶다면<br>여기서 뒤로 가 주세요.
+            이 화면에는 <b>${SETLIST_TOKYO.label}의 곡명과 순서</b>가 있어요.<br>
+            보기 방식을 고르기 전에는 내용이 표시되지 않습니다.
           </p>
+          <button class="spoiler-safe" type="button" id="spoiler-safe">스포 없이 홈으로</button>
 
           <div class="spoiler-choice">
             <button class="spoiler-open soft" type="button" data-mode="random">
-              <b>랜덤 순서로 보기</b>
-              <span>어떤 곡을 하는지만 · 순서는 감춤</span>
+              <b>곡명만 보기<span class="tag">곡명 스포</span></b>
+              <span>공연 순서는 섞어서 표시</span>
             </button>
             <button class="spoiler-open" type="button" data-mode="order">
-              <b>공연 순서로 보기<span class="tag">스포주의</span></b>
-              <span>순서까지 전부</span>
+              <b>공연 순서로 보기<span class="tag">전체 스포</span></b>
+              <span>곡명과 순서 모두 공개</span>
             </button>
           </div>
         </section>
 
-        <section class="setlist-body" id="setlist-body">
+        <section class="setlist-body" id="setlist-body" hidden inert>
           <div class="setlist-head">
             <h2>${escapeHtml(SETLIST_TOKYO.label)} 셋리스트</h2>
             <p id="setlist-desc"></p>
           </div>
 
-          <div class="set-modes" role="tablist" aria-label="셋리스트 보기 방식">
-            <button class="set-mode" type="button" role="tab" data-mode="order">공연 순서<span class="set-mode-badge">스포</span></button>
-            <button class="set-mode" type="button" role="tab" data-mode="random">랜덤 순서</button>
+          <div class="set-modes" role="group" aria-label="셋리스트 보기 방식">
+            <button class="set-mode" type="button" data-mode="order">공연 순서<span class="set-mode-badge">스포</span></button>
+            <button class="set-mode" type="button" data-mode="random">랜덤 순서</button>
+          </div>
+          <div class="set-order-confirm" id="set-order-confirm" role="group" aria-label="공연 순서 공개 확인" hidden>
+            <p>공연 순서가 그대로 공개됩니다.</p>
+            <button type="button" id="set-order-cancel">취소</button>
+            <button type="button" id="set-order-reveal">순서 공개</button>
           </div>
 
           <div class="set-shuffle" id="set-shuffle" hidden>
@@ -5710,19 +5620,17 @@
     `;
 
     document.getElementById("setlist-back-btn").addEventListener("click", ()=>{ location.hash = "#/"; });
+    document.getElementById("spoiler-safe").addEventListener("click", ()=>{ location.hash = "#/"; });
 
     const body = document.getElementById("setlist-body");
+    const orderConfirm = document.getElementById("set-order-confirm");
 
-    /* 가림막은 '보기 방식을 고른 순간'에만 걷는다.
-       스크롤만으로 열리면 랜덤을 고르기 전에 실제 순서를 보게 되므로 그 장치는 두지 않는다. */
+    /* 보기 방식을 고른 순간에만 목록 데이터를 만들고 표시한다. */
     const reveal = (mode)=>{
-      if (mode){
-        setlistMode = (mode === "random") ? "random" : "order";
-        store("horo-set-mode", setlistMode);
-      }
-      setlistRevealed = true;
+      setlistMode = (mode === "order") ? "order" : "random";
       paintSetlist();
-      body.classList.add("revealed");
+      body.hidden = false;
+      body.inert = false;
       body.scrollIntoView({ behavior:"smooth", block:"start" });
     };
 
@@ -5733,35 +5641,32 @@
     // 이미 펼친 뒤 보기 방식을 바꿀 때
     app.querySelectorAll(".set-mode").forEach(b=>{
       b.addEventListener("click", ()=>{
+        if (b.dataset.mode === "order" && setlistMode !== "order"){
+          orderConfirm.hidden = false;
+          document.getElementById("set-order-cancel").focus();
+          return;
+        }
+        orderConfirm.hidden = true;
         if (setlistMode === b.dataset.mode) return;
         setlistMode = b.dataset.mode === "random" ? "random" : "order";
-        store("horo-set-mode", setlistMode);
         paintSetlist();
       });
+    });
+    document.getElementById("set-order-cancel").addEventListener("click", ()=>{
+      orderConfirm.hidden = true;
+      app.querySelector('.set-mode[data-mode="order"]').focus();
+    });
+    document.getElementById("set-order-reveal").addEventListener("click", ()=>{
+      orderConfirm.hidden = true;
+      setlistMode = "order";
+      paintSetlist();
+      app.querySelector('.set-mode[data-mode="order"]').focus();
     });
     document.getElementById("set-reshuffle").addEventListener("click", ()=>{
       makeSetlistShuffle();
       paintSetlist();
     });
 
-    paintSetlist();
-
-    // 곡을 보고 돌아온 경우 — 가림막과 스크롤 위치를 그대로 되살린다.
-    // (보기 방식도 그대로라 실제 순서가 잠깐이라도 비치지 않는다)
-    if (setlistRevealed){
-      body.classList.add("revealed");
-      if (setlistScrollY > 0){
-        const y = setlistScrollY;
-        // 글꼴·레이아웃이 늦게 잡히면 페이지가 짧아 위치가 잘리므로 몇 번 더 맞춘다
-        const restore = ()=>{
-          const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-          window.scrollTo(0, Math.min(y, max));
-        };
-        requestAnimationFrame(restore);
-        setTimeout(restore, 80);
-        setTimeout(restore, 260);
-      }
-    }
   }
 
   /* 알약 안의 두 글자를 바꿔 준다. clock 을 비우면 왼쪽 글자만 크게 보인다. */
@@ -5864,21 +5769,6 @@
       });
     }
 
-    // 오프라인 준비 상태
-    const badge = document.getElementById("offline-badge");
-    const text  = document.getElementById("offline-text");
-    if (badge && text){
-      if (!("serviceWorker" in navigator) || !location.protocol.startsWith("http")) return;
-      badge.classList.add("show");
-      const markReady = ()=>{
-        badge.classList.add("ready");
-        text.textContent = "오프라인 가사 저장 완료";
-      };
-      if (navigator.serviceWorker.controller) markReady();
-      else navigator.serviceWorker.ready.then(()=> setTimeout(()=>{
-        if (navigator.serviceWorker.controller) markReady();
-      }, 800));
-    }
   }
 
 
@@ -5923,7 +5813,7 @@
         ? songSort.startsWith(b.dataset.sort)
         : b.dataset.sort === songSort;
       b.classList.toggle("active", on);
-      b.setAttribute("aria-selected", on ? "true" : "false");
+      b.setAttribute("aria-pressed", on ? "true" : "false");
     });
     const chantBtn = document.getElementById("sort-chant");
     if (chantBtn){
@@ -6105,20 +5995,27 @@
     const btn   = document.getElementById("song-picker-btn");
     const list  = document.getElementById("song-sheet-list");
     if (!sheet) return;
+    sheet.inert = false;
     sheet.classList.add("open");
     sheet.setAttribute("aria-hidden", "false");
     if (btn) btn.setAttribute("aria-expanded", "true");
+    songView.querySelectorAll("#song-page > .song-topbar, #song-page > .song-body, #song-page > .player-controls").forEach(el => { el.inert = true; });
     const cur = list && list.querySelector(".song-sheet-item.current");
     if (cur) list.scrollTop = Math.max(0, cur.offsetTop - list.clientHeight / 2 + cur.offsetHeight / 2);
+    sheet.querySelector(".song-sheet-close").focus();
   }
   function closeSongSheet(){
     const sheet = document.getElementById("song-sheet");
     const btn   = document.getElementById("song-picker-btn");
     if (!sheet) return;
+    const wasOpen = sheet.classList.contains("open");
     resetSheetFilter();
+    songView.querySelectorAll("#song-page > .song-topbar, #song-page > .song-body, #song-page > .player-controls").forEach(el => { el.inert = false; });
     sheet.classList.remove("open");
     sheet.setAttribute("aria-hidden", "true");
+    sheet.inert = true;
     if (btn) btn.setAttribute("aria-expanded", "false");
+    if (wasOpen && btn) btn.focus();
   }
 
   /* ── 곡 화면 셸 ───────────────────────────────────────────────
@@ -6194,6 +6091,7 @@
             <div class="video-wrap">
               <div class="video-frame">
                 <div id="yt-player"></div>
+                <div class="video-status" id="video-status" role="status">영상을 불러오는 중…</div>
               </div>
               <a class="watch-on-yt" id="watch-on-yt" href="#" target="_blank" rel="noopener">유튜브에서 보기 ↗</a>
             </div>
@@ -6234,16 +6132,17 @@
           </button>
         </div>
 
-        <div class="song-sheet" id="song-sheet" aria-hidden="true">
+        <div class="song-sheet" id="song-sheet" aria-hidden="true" inert>
           <div class="song-sheet-backdrop" data-close-sheet></div>
-          <div class="song-sheet-panel" role="dialog" aria-label="곡 선택">
+          <div class="song-sheet-panel" role="dialog" aria-modal="true" aria-label="곡 선택">
             <span class="song-sheet-grip"></span>
             <div class="song-sheet-head">
-              <span class="song-sheet-title">Song List</span>
+              <span class="song-sheet-title">곡 선택</span>
               <span class="song-sheet-count">${SONGS.length}곡</span>
               <button class="song-sheet-close" data-close-sheet aria-label="닫기">${CLOSE_SVG}</button>
             </div>
             <div class="sheet-search">
+              <label class="search-label" for="sheet-search-input">곡 검색</label>
               <div class="song-search-box">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
                 <input id="sheet-search-input" type="search" inputmode="search" autocomplete="off"
@@ -6338,8 +6237,17 @@
     songKeyHandler = (e)=>{
       if (!isSongViewActive()) return;                      // 다른 화면이면 무시
       const sheet = document.getElementById("song-sheet");
-      if (e.key === "Escape"){ closeSongSheet(); return; }
-      if (sheet.classList.contains("open")) return;         // 목록이 열려 있으면 좌우키 무시
+      if (e.key === "Escape" && sheet.classList.contains("open")){ e.preventDefault(); closeSongSheet(); return; }
+      if (sheet.classList.contains("open")){
+        if (e.key === "Tab"){
+          const focusable = [...sheet.querySelectorAll("button, input")].filter(el => !el.disabled && el.offsetParent !== null);
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+        }
+        return;
+      }
       const tag = (e.target && e.target.tagName || "").toLowerCase();
       if (tag === "input" || tag === "textarea") return;
       if (e.key === "ArrowLeft")  document.getElementById("prev-song").click();
@@ -6402,10 +6310,10 @@
 
     document.getElementById("song-sheet-list").innerHTML = sortedSongs().map((s)=>`
       <li data-no="${songNo(s)}">
-        <button class="song-sheet-item${s.id === song.id ? " current" : ""}" data-id="${s.id}">
+        <button class="song-sheet-item${s.id === song.id ? " current" : ""}" data-id="${s.id}"${s.id === song.id ? ' aria-current="true"' : ""}>
           <span class="song-sheet-num">${pad(songNo(s))}</span>
           <span class="song-sheet-name">${escapeHtml(s.title)}</span>
-          ${s.id === song.id ? `<span class="song-sheet-now">NOW</span>` : ""}
+          ${s.id === song.id ? `<span class="song-sheet-now">현재 곡</span>` : ""}
         </button>
       </li>`).join("");
 
@@ -6414,6 +6322,7 @@
 
     // 곡 화면 보이기 (먼저 보여야 컨테이너 높이를 정확히 잴 수 있음)
     songView.classList.remove("offstage");
+    songView.inert = false;
     app.style.display = "none";
 
     applyVenueMode();                      // 단축모드 상태 반영 (글자 크기 등)
@@ -6423,6 +6332,7 @@
     const scroller = songView.querySelector(".lyrics-scroll");
     if (scroller) scroller.scrollTop = 0;
 
+    showVideoStatus();
     ensurePlaying(song.youtubeId);
   }
 
@@ -6473,6 +6383,7 @@
       try { player.pauseVideo(); } catch(e){}
     }
     if (songShellBuilt) songView.classList.add("offstage");
+    songView.inert = true;
     app.style.display = "";
   }
 
@@ -6759,11 +6670,24 @@
      loadVideoById 로 영상만 갈아끼운다. 이렇게 해야 사용자가 곡을 탭한
      순간의 "재생 허가"가 유지되어 모바일에서도 소리가 바로 난다. */
   let playerReady   = false;
+  let videoStatusTimer = null;
   let currentVideoId = null;    // 플레이어에 올라가 있는 영상
   let pendingVideoId = null;    // 플레이어 준비 전에 눌린 곡
   let userVolume     = 100;     // 사용자가 마지막으로 맞춰 둔 볼륨(곡이 바뀌어도 유지)
   let userMuted      = false;   // 사용자가 직접 음소거해 뒀는지
   let volumeWatchTimer = null;
+
+  function showVideoStatus(){
+    const status = document.getElementById("video-status");
+    if (!status) return;
+    clearTimeout(videoStatusTimer);
+    status.hidden = playerReady;
+    if (playerReady) return;
+    status.textContent = "영상을 불러오는 중…";
+    videoStatusTimer = setTimeout(()=>{
+      if (!playerReady && status.isConnected) status.textContent = "영상 연결이 지연되고 있어요. 아래에서 유튜브로 열어 보세요.";
+    }, 8000);
+  }
 
   function ensurePlayer(){
     if (player || !window.YT || !window.YT.Player) return;
@@ -6780,13 +6704,17 @@
       },
       events: {
         'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
+        'onStateChange': onPlayerStateChange,
+        'onError': onPlayerError
       }
     });
   }
 
   function onPlayerReady(){
     playerReady = true;
+    clearTimeout(videoStatusTimer);
+    const status = document.getElementById("video-status");
+    if (status) status.hidden = true;
     try { player.unMute(); player.setVolume(userVolume); } catch(e){}
     startVolumeWatch();
     if (pendingVideoId) {                   // 준비되기 전에 고른 곡이 있으면 지금 재생
@@ -6794,6 +6722,14 @@
       pendingVideoId = null;
       playVideoFor(id);
     }
+  }
+
+  function onPlayerError(){
+    clearTimeout(videoStatusTimer);
+    const status = document.getElementById("video-status");
+    if (!status) return;
+    status.hidden = false;
+    status.textContent = "영상을 재생할 수 없어요. 아래에서 유튜브로 열어 보세요.";
   }
 
   /* ── 볼륨 기억하기 ────────────────────────────────────────────
