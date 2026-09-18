@@ -2673,7 +2673,7 @@
       title: "두근거림 (Tokimeki)",
       youtubeId: "-_PKhPMXMDY", // ← 실제 유튜브 영상 ID로 교체
       lyrics: [
-        { time: 0, jp: "[clap]目に映るのは 確かなときめきで光る魔法",        ko: [{ text: "메니 우츠루노와 타시카나 토키메키데 히카루 마호", tag: "clap" }],                                                     tr: "눈에 비치는 것은 확실한 두근거림으로 빛나는 마법" },
+        { time: 0, jp: "[clap]目に映るのは 確かなときめきで光る魔法",        ko: [{ text: "메니 우츠루노와 타시카나 토키메키데 히카루\u00a0마호", tag: "clap" }],                                                     tr: "눈에 비치는 것은 확실한 두근거림으로 빛나는 마법" },
         { time: 9, jp: "[clap]思い当たるのは 誰かの 涙が落ちる音",        ko: [{ text: "오모이아타루노와 다레카노 나미다가 오치루 오토", tag: "clap" }],                                                     tr: "마음에 짚이는 것은 누군가의 눈물이 떨어지는 소리" },
         /* ↓↓ 짤방 예시 — 이 세 줄 동안 손 흔들기 사진이 가사 위에 떠 있습니다.
               다른 줄에도 똑같이  pic: "이름"  만 붙이면 됩니다. ↓↓ */
@@ -2686,7 +2686,7 @@
         { time: 49, jp: "[wave]DA-DADADADA Just dancing tonight", ko: [{ text: "DA-DADADADA ", tag: "chant" }, { text: "Just dancing tonight"}],               tr: "DA-DADADADA Just dancing tonight", pic: "wave_dada" },
         { time: 54, jp: "[wave](DA-DA-DA) あくびしてる暇なんかないぜ", ko: [{ text: "(DA-DA-DA) ", tag: "chant" }, { text: "아쿠비시테루 히마난카 나이제"}],               tr: "(DA-DA-DA) 하품하고 있을 시간 따윈 없어" },
         { time: 59.5, jp: "[wave]ほら、ほらもっと聞かせて Hu Hu Hu Hu Hu", ko: [{ text: "호라 호라 못토 키카세테" }, { text: " Hu Hu Hu Hu Hu", tag: "chant" }],               tr: "자, 좀 더 들려줘 Hu Hu Hu Hu Hu" },
-        { time: 73, jp: "[clap]聞こえてるのは 確かな ときめきで歌う魔法",        ko: [{ text: "키코에테루노와 타시카나 토키메키데 히카루 마호", tag: "clap" }],                                                     tr: "들리는 것은 확실한 두근거림으로 빛나는 마법" },
+        { time: 73, jp: "[clap]聞こえてるのは 確かな ときめきで歌う魔法",        ko: [{ text: "키코에테루노와 타시카나 토키메키데 히카루\u00a0마호", tag: "clap" }],                                                     tr: "들리는 것은 확실한 두근거림으로 빛나는 마법" },
         { time: 81, jp: "[clap]思い当たるのは 誰かの 鼻歌のイントロ",        ko: [{ text: "오모이아타루노와 다레카노 하나우타노 인토로", tag: "clap" }],                                                     tr: "마음에 짚이는 것은 누군가의 콧노래의 인트로" },
         { time: 89, jp: "[wave] Hu Hu Hu Ya Ya x3",        ko: [{ text: "Hu Hu Hu Ya Ya x3", tag: "chant" }],                                                    tr: "Hu Hu Hu Ya Ya x3" },
         { time: 95, jp: "[wave]それは、鮮やかな魔法 Hu Hu Hu Ya Ya x2", ko: [{ text: "소레와 아자야카나 마호-" }, { text: " Hu Hu Hu Ya Ya x2", tag: "chant" }],               tr: "그것은 산뜻한 마법 Hu Hu Hu Ya Ya x2" },
@@ -4359,6 +4359,36 @@
   let currentSong = null;
   let songKeyHandler = null;   // 곡 화면 키보드 단축키(← → Esc) 핸들러
 
+  const themePreference = window.matchMedia("(prefers-color-scheme: dark)");
+  const storedTheme = store("horo-theme");
+  let currentTheme = storedTheme === "dark" ? "dark"
+    : storedTheme === "light" ? "light"
+    : themePreference.matches ? "dark" : "light";
+
+  function themeToggleHtml(extraClass = ""){
+    return `<button class="theme-toggle ${extraClass}" type="button" data-theme-toggle></button>`;
+  }
+  function applyTheme(theme, save = false){
+    currentTheme = theme;
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]').content = theme === "dark" ? "#151619" : "#f5f5f7";
+    if (save) store("horo-theme", theme);
+    document.querySelectorAll("[data-theme-toggle]").forEach(button => {
+      const label = theme === "dark" ? "라이트 모드" : "다크 모드";
+      button.textContent = label;
+      button.setAttribute("aria-label", `${label}로 전환`);
+    });
+  }
+  document.addEventListener("click", event => {
+    if (!event.target.closest("[data-theme-toggle]")) return;
+    applyTheme(currentTheme === "dark" ? "light" : "dark", true);
+  });
+  if (themePreference.addEventListener){
+    themePreference.addEventListener("change", event => {
+      if (!store("horo-theme")) applyTheme(event.matches ? "dark" : "light");
+    });
+  }
+
   function pad(n){ return String(n).padStart(2,"0"); }
 
   function router(){
@@ -4389,6 +4419,7 @@
       renderHome();
     }
     window.scrollTo(0,0);
+    applyTheme(currentTheme);
   }
 
   /* ---------------- HOME ---------------- */
@@ -4764,6 +4795,7 @@
   function renderHome(){
     app.innerHTML = `
       <section class="hero">
+        ${themeToggleHtml("home-theme")}
         <div class="hero-inner">
           <div class="eyebrow">ASIA ARENA TOUR 2026</div>
           <h1 class="tour-title"><span>VAUNDY</span>&ldquo;HORO&rdquo;</h1>
@@ -5298,12 +5330,13 @@
       <div class="guide-page">
         <div class="song-topbar">
           <button class="back-btn" id="back-btn">← 홈으로</button>
+          ${themeToggleHtml()}
         </div>
 
         <section class="songs-section">
           <div class="songs-head">
             <h1>응원가이드</h1>
-            <p>곡을 선택하면 영상에 맞춰 가사 · 떼창 포인트를 확인할 수 있어요</p>
+            <p>곡을 선택해 영상과 함께 가사 · 떼창 포인트를 보세요</p>
             <div class="song-legend">
               <span class="legend-item"><span class="legend-icon chant">${INLINE_ICONS.mic}</span>떼창 <b class="legend-num">12</b>줄</span>
               <span class="legend-item common"><span class="legend-icon clap">${INLINE_ICONS.clap}</span>박수</span>
@@ -5311,7 +5344,7 @@
               <span class="legend-item"><span class="legend-icon jump">${INLINE_ICONS.jump}</span>점프</span>
               <span class="legend-item"><span class="legend-icon spin">${INLINE_ICONS.spin}</span>팔 돌리기</span>
             </div>
-            <p class="song-legend-note">숫자는 떼창 가사 줄 수입니다. 정렬 순서는 곡 화면의 이전·다음에도 적용됩니다.<br>박수와 손 흔들기는 곡 화면에서 확인할 수 있어요.</p>
+            <p class="song-legend-note">숫자는 떼창 가사 줄 수입니다.<br>정렬한 순서대로 곡을 이동합니다.<br>박수·손 흔들기는 곡 화면에 있어요.</p>
           </div>
           <div class="song-search-sentinel" id="song-search-sentinel"></div>
           <div class="song-search">
@@ -5319,7 +5352,7 @@
             <div class="song-search-box">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
               <input id="song-search-input" type="search" inputmode="search" autocomplete="off"
-                     placeholder="곡 제목 · 번호 검색 (한글 · 일본어 · ㄱㄴㄷ)">
+                     placeholder="곡 제목 · 번호 검색">
               <button type="button" class="song-search-clear" id="song-search-clear" aria-label="지우기">✕</button>
             </div>
           </div>
@@ -5563,6 +5596,7 @@
         <div class="song-topbar">
           <button class="back-btn" id="setlist-back-btn">← 홈으로</button>
           <h1>셋리스트</h1>
+          ${themeToggleHtml()}
         </div>
 
         <section class="spoiler-hero">
@@ -5999,7 +6033,7 @@
     sheet.classList.add("open");
     sheet.setAttribute("aria-hidden", "false");
     if (btn) btn.setAttribute("aria-expanded", "true");
-    songView.querySelectorAll("#song-page > .song-topbar, #song-page > .song-body, #song-page > .player-controls").forEach(el => { el.inert = true; });
+    songView.querySelectorAll("#song-page > .song-topbar, #song-page > .song-body, #song-page > .player-controls, #song-page > .song-dock").forEach(el => { el.inert = true; });
     const cur = list && list.querySelector(".song-sheet-item.current");
     if (cur) list.scrollTop = Math.max(0, cur.offsetTop - list.clientHeight / 2 + cur.offsetHeight / 2);
     sheet.querySelector(".song-sheet-close").focus();
@@ -6010,7 +6044,7 @@
     if (!sheet) return;
     const wasOpen = sheet.classList.contains("open");
     resetSheetFilter();
-    songView.querySelectorAll("#song-page > .song-topbar, #song-page > .song-body, #song-page > .player-controls").forEach(el => { el.inert = false; });
+    songView.querySelectorAll("#song-page > .song-topbar, #song-page > .song-body, #song-page > .player-controls, #song-page > .song-dock").forEach(el => { el.inert = false; });
     sheet.classList.remove("open");
     sheet.setAttribute("aria-hidden", "true");
     sheet.inert = true;
@@ -6072,18 +6106,10 @@
 
     songView.innerHTML = `
       <div class="song-page" id="song-page">
-        <div class="song-topbar has-nav">
+        <div class="song-topbar">
           <button class="back-btn" id="song-back-btn" aria-label="곡 목록으로" title="곡 목록으로">←</button>
-          <div class="song-nav">
-            <button class="song-nav-btn" id="prev-song" aria-label="이전 곡">${CHEV_LEFT_SVG}</button>
-            <h1 class="song-picker-h">
-              <button class="song-picker-btn" id="song-picker-btn" aria-expanded="false" aria-haspopup="dialog" title="탭하면 곡 목록이 열려요">
-                <span class="song-picker-title" id="song-picker-title"></span>
-                <span class="song-picker-caret">${CHEVRON_SVG}</span>
-              </button>
-            </h1>
-            <button class="song-nav-btn" id="next-song" aria-label="다음 곡">${CHEV_RIGHT_SVG}</button>
-          </div>
+          <h1 class="visually-hidden" id="song-page-heading"></h1>
+          ${themeToggleHtml()}
         </div>
 
         <div class="song-body">
@@ -6131,6 +6157,19 @@
             <span class="autoscroll-switch"><span class="autoscroll-knob"></span></span>
           </button>
         </div>
+
+        <nav class="song-dock" aria-label="곡 이동">
+          <div class="song-nav">
+            <button class="song-nav-btn" id="prev-song" aria-label="이전 곡">${CHEV_LEFT_SVG}</button>
+            <div class="song-picker-h">
+              <button class="song-picker-btn" id="song-picker-btn" aria-expanded="false" aria-haspopup="dialog" title="곡 목록 열기">
+                <span class="song-picker-title" id="song-picker-title"></span>
+                <span class="song-picker-caret">${CHEVRON_SVG}</span>
+              </button>
+            </div>
+            <button class="song-nav-btn" id="next-song" aria-label="다음 곡">${CHEV_RIGHT_SVG}</button>
+          </div>
+        </nav>
 
         <div class="song-sheet" id="song-sheet" aria-hidden="true" inert>
           <div class="song-sheet-backdrop" data-close-sheet></div>
@@ -6283,6 +6322,7 @@
     else            page.style.removeProperty("--song-cover");
 
     document.getElementById("song-picker-title").textContent = song.title;
+    document.getElementById("song-page-heading").textContent = song.title;
     // 어디서 들어왔는지에 따라 '뒤로' 버튼의 안내 글을 바꾼다
     const backBtn = document.getElementById("song-back-btn");
     if (backBtn){
